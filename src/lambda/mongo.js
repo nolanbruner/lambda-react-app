@@ -1,36 +1,10 @@
 
 import dotenv from "dotenv"
 dotenv.config()
-
-
-// const { MongoClient } = require("mongodb");
-
-// const mongoClient = new MongoClient(process.env.URI);
-
-// const clientPromise = mongoClient.connect();
-
-// const handler = async (event) => {
-//     try {
-//         const database = (await clientPromise).db(process.env.DB);
-//         const collection = database.collection(process.env.COLLECTION);
-//         const results = await collection.find({}).limit(1).toArray();
-//         return {
-//             statusCode: 200,
-//             body: JSON.stringify({ msg: results })
-//         };
-//     } catch (error) {
-//         return { statusCode: 500, body: error.toString() }
-//     }
-// }
-
-// module.exports = { handler }
-
-
 import axios from "axios"
 export async function handler(event, context) {
     const web = process.env.MONGO_ENDPOINT
-    console.log(web)
-    console.log("hi")
+    // console.log(web)
     try {
         const response = await axios.get(process.env.MONGO_ENDPOINT, {
             headers: {
@@ -40,10 +14,10 @@ export async function handler(event, context) {
             }
         })
         const data = response.data
-
+        console.log(data[0])
         return {
             statusCode: 200,
-            body: JSON.stringify({ msg: data[0].quote })
+            body: JSON.stringify({ msg: data[0].quote, auth: data[0].author })
         };
     } catch (err) {
         console.log(err) // output to netlify function log
