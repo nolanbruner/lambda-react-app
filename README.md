@@ -1,6 +1,7 @@
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A random quote generator that displays a random quote from my DB of quotes. Uses netlify lambda functions and custom API to fetch the quote.
 
 click to view in action:
 https://comforting-gnome-8841d2.netlify.app/
